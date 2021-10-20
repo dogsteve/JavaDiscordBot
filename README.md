@@ -1,0 +1,2 @@
+# JavaDiscordBot
+ some funny staff
