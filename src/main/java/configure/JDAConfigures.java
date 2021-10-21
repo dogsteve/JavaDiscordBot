@@ -13,7 +13,7 @@ public class JDAConfigures {
     public JDAConfigures(String token) {
         this.jdaBuilder = JDABuilder.createDefault(token);
         this.jdaBuilder.setActivity(Activity.watching("Porn Hub"));
-        this.jdaBuilder.disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE, CacheFlag.ACTIVITY);
+        this.jdaBuilder.disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.ACTIVITY);
         this.jdaBuilder.setChunkingFilter(ChunkingFilter.NONE);
         this.jdaBuilder.disableIntents(GatewayIntent.DIRECT_MESSAGE_TYPING);
         this.jdaBuilder.setLargeThreshold(50);

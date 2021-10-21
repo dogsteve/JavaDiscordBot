@@ -2,6 +2,6 @@ package command;
 
 public class PrefixConstance {
 
-    public static final String PREFIX = "!";
+    public static final String PREFIX = "bot-";
 
 }

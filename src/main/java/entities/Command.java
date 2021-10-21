@@ -2,6 +2,8 @@ package entities;
 
 import command.PrefixConstance;
 
+import java.util.Arrays;
+
 public class Command {
 
     private String message;
@@ -11,19 +13,19 @@ public class Command {
 
     public Command(String message) {
         this.message = message;
-        if (checkLegalCommand()) {
-            this.commandName = this.message.split(PrefixConstance.PREFIX)[1];
-            this.commandName = this.commandName.split(" ")[0];
-            this.numberOfContext = this.message.split(PrefixConstance.PREFIX + commandName).length;
-            if (numberOfContext == 0) {
-                return;
-            }
-            this.commandContext = this.message.split(PrefixConstance.PREFIX + commandName);
-            this.commandContext = this.commandContext[1].split("/");
-            for (int i = 0; i < this.commandContext.length; i++) {
-                this.commandContext[i] = this.commandContext[i].trim();
-            }
+        if(!this.message.startsWith(PrefixConstance.PREFIX)) {
+            return;
         }
+        StringBuilder stringBuilder = new StringBuilder(this.message);
+        this.commandName = this.message.substring(PrefixConstance.PREFIX.length(), this.message.length()).split(" ")[0];
+        commandContext = stringBuilder.delete(0, PrefixConstance.PREFIX.length() + this.commandName.length()).toString().trim().split("/");
+        for (int i = 0; i < commandContext.length; i++) {
+            commandContext[i] = commandContext[i].trim();
+        }
+    }
+
+    public String getURL () {
+        return "http" + this.message.split("http")[1];
     }
 
     public String getCommandName() {
