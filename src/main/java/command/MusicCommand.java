@@ -14,7 +14,7 @@ import ultis.ScopeChecker;
 public class MusicCommand extends ListenerAdapter {
 
     private String[] command = {
-            "play", "skip", "next", "select", "terminate", "pause", "resume"
+            "play", "skip", "next", "currentsong", "terminate", "pause", "resume"
     };
     private MusicPlayer player;
 
@@ -43,21 +43,26 @@ public class MusicCommand extends ListenerAdapter {
                     event.getChannel().sendMessage("Previous song has been paused").queue();
                     return;
                 }
-                event.getChannel().sendMessage("Playing anothersong").queue();
-                return;
+                this.player.loadAndPlay(event.getChannel(), cmd.getURL());
             }
             Guild guild = event.getGuild();
             VoiceChannel voiceChannel = event.getMember().getVoiceState().getChannel();
             AudioManager manager = guild.getAudioManager();
             manager.openAudioConnection(voiceChannel);
             this.player = new MusicPlayer();
-            player.loadAndPlay(event.getChannel(), cmd.getURL());
+            String zootube;
+            if (cmd.getURL().startsWith("http")) {
+                zootube = cmd.getURL();
+            }
+            else {
+                zootube = "ytsearch:" + cmd.getURL();
+            }
+            player.loadAndPlay(event.getChannel(), zootube);
             return;
         }
 
         // terminate command
         if (cmd.getCommandName().equals(command[4])) {
-            System.out.println("termin");
             if (this.player == null) {
                 event.getChannel().sendMessage("I didn't do anything").queue();
                 return;
@@ -87,6 +92,11 @@ public class MusicCommand extends ListenerAdapter {
             }
             player.getMusicManager(event.getGuild()).scheduler.player.setPaused(false);
             return;
+        }
+
+        // song info
+        if (cmd.getCommandName().equals(command[3])) {
+            event.getChannel().sendMessage(this.player.getMusicManager(event.getGuild()).scheduler.player.getPlayingTrack().getInfo().title).queue();
         }
     }
 }

@@ -25,8 +25,14 @@ public class Command {
     }
 
     public String getURL () {
-        return "http" + this.message.split("http")[1];
+        try {
+            return "http" + this.message.split("http")[1];
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+            return this.commandContext[0];
+        }
     }
+
 
     public String getCommandName() {
         return commandName;

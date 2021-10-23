@@ -42,7 +42,6 @@ public class MusicPlayer {
             @Override
             public void trackLoaded(AudioTrack track) {
                 musicManager.scheduler.queue(track);
-
                 channel.sendMessage("Founded ")
                         .append(track.getInfo().title)
                         .append(" by ")
@@ -54,9 +53,9 @@ public class MusicPlayer {
             public void playlistLoaded(AudioPlaylist playlist) {
                 final List<AudioTrack> tracks = playlist.getTracks();
 
-                channel.sendMessage("Playlist : ")
+                channel.sendMessage("Found: ")
                         .append(String.valueOf(tracks.size()))
-                        .append(" tracks from playlist ")
+                        .append(" tracks ")
                         .append(playlist.getName())
                         .queue();
 
@@ -67,7 +66,7 @@ public class MusicPlayer {
 
             @Override
             public void noMatches() {
-                channel.sendMessage("Cann not find your URL").queue();
+                channel.sendMessage("Can not find your URL").queue();
             }
 
             @Override
