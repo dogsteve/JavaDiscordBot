@@ -1,5 +1,5 @@
 # JavaDiscordBot
- Bot này được viết bằng Java và mã nguồn mở nên mọi người có thể thoải mái edit phần code viết hơi ngu do mình mới học JAVA =))
+ Tại sao có bot : Giáo trình trên trường hơi chán =)). Đương nhiên rồi lấy code về edit thoải mái, hoặc contribute vô đây làm siêu bot cx được
 # Sử dụng
  Đầu tiên bạn cần tạo cho mình một Discord Application sau đó tạo 1 con bot
  + https://discord.com/developers/applications vào đây để tạo một Discord Application
