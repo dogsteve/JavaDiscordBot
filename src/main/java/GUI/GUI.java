@@ -1,11 +1,14 @@
 package GUI;
 
 import configure.MainBOT;
+
 import javax.security.auth.login.LoginException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 public class GUI extends JFrame {
 
@@ -13,28 +16,29 @@ public class GUI extends JFrame {
     private JLabel txtLabel;
     private MainBOT bot;
 
-    public GUI () {
+    public GUI (String token) {
         super();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        String token = JOptionPane.showInputDialog(null, "Your bot token", "BOT TOKEN", 1);
-        if (token.equals("")) {
-            JOptionPane.showConfirmDialog(null, "Missing bot token", "Missing", JOptionPane.CLOSED_OPTION);
-            return;
-        }
         pack();
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
+        setTitle("BOT Dashboard");
         this.setSize(1280, 768);
         this.txArea = new TextArea();
         this.txtLabel = new JLabel();
-        setTitle("BOT Dashboard");
         this.txtLabel.setText("BOT BOT BOT BOT!");
-        setLocationRelativeTo(null);
-        setLayout(new BorderLayout());
+        this.txArea.setEditable(false);
         add(this.txtLabel, BorderLayout.NORTH);
         add(this.txArea, BorderLayout.CENTER);
         setVisible(true);
         try {
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+            PrintStream ps = new PrintStream(output);
+            System.setOut(ps);
+            System.setErr(ps);
             this.bot = new MainBOT(token);
-            this.txArea.setText("Bot is running");
+            this.txArea.setText("Bot is running \n");
+            this.txArea.append(output.toString());
         }
         catch (LoginException e) {
             this.bot.shutdownBot();

@@ -23,6 +23,7 @@ public class MainBOT {
         jda.addEventListener(new FeedBackCommand());
         jda.addEventListener(new PrefixCommand());
         jda.addEventListener(new FinanceCommand());
+        jda.addEventListener(new ActivityCommand(this.jda));
     }
 
     public void shutdownBot() {
@@ -31,6 +32,10 @@ public class MainBOT {
 
     public JDA getJda () {
         return jda;
+    }
+
+    public JDAConfigures getConfigure () {
+        return this.configure;
     }
 
 }

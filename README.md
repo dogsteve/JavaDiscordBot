@@ -5,6 +5,7 @@
  + https://discord.com/developers/applications vào đây để tạo một Discord Application
  + sau đó tạo một bot trong phần bot, copy token của nó rồi dán vào pop up lúc khởi chạy là oke
  + Bot có những tính năng chính nghe nhạc, voteban member, đọc lệnh (maybe), feedback (cái này sẽ chỉ dẫn đến máy chủ của bạn)
+ + Để lưu token cho những lần sau, tạo file token.txt và paste token zô đó
 # Command
  + prefix mặc định là bot- , bạn có thể dùng lệnh `bot-setting <new_prefix>` để sửa
  + mỗi một tham số trong lênh cách nhau bơi `/` nên hãy cẩn thận nhé
@@ -19,3 +20,5 @@
    + `stonks <mã cổ phiếu> / <ngày bắt đầu> / <ngày kết thúc> / (tùy chọn)<viết bừa vào đây để in ra danh sách>` =))
    + `chart` phải dùng lênh stonks trước để lấy dữ liệu rồi mới dùng đc ông này : in ra biều đồ nhé
    + `nextturn` hủy phiên làm việc hiện tại nhường người khác =))
+ + activities
+   + `changeactivity <playing/watching/listening/competing> <ten_hoat_dong>` để đổi trạng thái bot 

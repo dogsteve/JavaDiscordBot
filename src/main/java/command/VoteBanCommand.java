@@ -32,7 +32,7 @@ public class VoteBanCommand extends ListenerAdapter {
 
         if (cmd.getCommandName().equals(command[0])) {
             User userToVote = event.getMessage().getMentionedUsers().get(0);
-            this.voteban = new VoteBanServices(userToVote, cmd.getCommandContext()[0], event);
+            this.voteban = new VoteBanServices(userToVote, cmd.getCommandContext()[1], event);
             event.getChannel().sendMessage("Press " + PrefixConstance.PREFIX + "enjoyvote" + " to join voting").queue();
             return;
         }
